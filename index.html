@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Awareness Training</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .quiz-card {
+      max-width: 650px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .scenario-box {
+      background-color: #f8f9fa;
+      border-left: 5px solid #007bff;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .btn-group {
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 18px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      background-color: #e9ecef;
+    }
+    button:hover {
+      background-color: #dee2e6;
+    }
+    .btn-next {
+      background-color: #007bff;
+      color: white;
+      border: none;
+    }
+    .btn-next:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-card">
+    <h2>2. Interactive Knowledge Check</h2>
+    <p>Evaluate the email scenario below and decide if it is legitimate or a phishing attempt.</p>
+    
+    <div id="question" class="scenario-box">
+      <!-- Scenario content injects here directly -->
+    </div>
+    
+    <div class="btn-group">
+      <button onclick="checkAnswer('phishing')">Phishing Attempt</button>
+      <button onclick="checkAnswer('legitimate')">Legitimate Email</button>
+    </div>
+    
+    <div id="result"></div>
+    
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+    
+    <button class="btn-next" onclick="nextQuestion()">Next Question</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        subject: "URGENT: Verify Your HR Portal Account Now",
+        body: "Dear Employee, Your HR portal account will be suspended within 24 hours due to inactivity. Click here immediately to verify your credentials: http://hr-update-security-portal.com/login",
+        type: "phishing",
+        explanation: "This is a phishing attempt. It uses high-urgency language, a suspicious domain name, and requests sensitive password details."
+      },
+      {
+        subject: "Updated IT Maintenance Schedule for Saturday",
+        body: "Hello Team, Please be aware that our internal network services will undergo scheduled maintenance this Saturday from 2:00 AM to 4:00 AM. No action is required on your part.",
+        type: "legitimate",
+        explanation: "This is a legitimate internal email. It is purely informational and asks for no passwords, logins, or personal data."
+      },
+      {
+        subject: "Action Required: Overdue Invoice Payment",
+        body: "Attached is invoice #98421. Please review and process payment today using the provided banking portal link: http://secure-pay-invoice-check.net",
+        type: "phishing",
+        explanation: "This is a phishing attempt. Malicious links claiming to be attached or linked invoices are common vector attacks designed to steal financial credentials."
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function loadQuestion() {
+      const q = questions[currentIndex];
+      const qContainer = document.getElementById("question");
+      const rContainer = document.getElementById("result");
+
+      if (qContainer) {
+        qContainer.innerHTML = "<p><strong>Subject:</strong> " + q.subject + "</p><p><strong>Email Content:</strong> " + q.body + "</p>";
+      }
+      if (rContainer) {
+        rContainer.innerHTML = "";
+      }
+    }
+
+    function checkAnswer(userChoice) {
+      const q = questions[currentIndex];
+      const rContainer = document.getElementById("result");
+
+      if (rContainer) {
+        if (userChoice === q.type) {
+          rContainer.innerHTML = '<div style="color: #2e7d32; padding: 10px; background-color: #e8f5e9; border-radius: 4px;"><strong>Correct!</strong> ' + q.explanation + '</div>';
+        } else {
+          rContainer.innerHTML = '<div style="color: #c62828; padding: 10px; background-color: #ffebee; border-radius: 4px;"><strong>Incorrect.</strong> ' + q.explanation + '</div>';
+        }
+      }
+    }
+
+    function nextQuestion() {
+      currentIndex = (currentIndex + 1) % questions.length;
+      loadQuestion();
+    }
+
+    // Load first question on open
+    window.onload = loadQuestion;
+  </script>
+
+</body>
+</html>

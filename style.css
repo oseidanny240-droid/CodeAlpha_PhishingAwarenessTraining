@@ -1,0 +1,71 @@
+/* Phishing Awareness Training - Styling */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #333333;
+}
+
+.quiz-card {
+  max-width: 650px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+  color: #1a252f;
+}
+
+.scenario-box {
+  background-color: #f8f9fa;
+  border-left: 5px solid #007bff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.btn-group {
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: #e9ecef;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #dee2e6;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.btn-next {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-next:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+}
